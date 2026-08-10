@@ -134,7 +134,8 @@
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(100deg, var(--navy) 0%, rgba(11,37,69,.97) 10%, rgba(11,37,69,.85) 24%, rgba(11,37,69,.55) 38%, rgba(11,37,69,.2) 52%, rgba(11,37,69,.02) 66%, rgba(10,33,64,.06) 100%),
-                  linear-gradient(0deg, var(--navy) 0%, rgba(11,37,69,.16) 15%, transparent 32%);
+                  linear-gradient(0deg, var(--navy) 0%, rgba(11,37,69,.16) 15%, transparent 32%),
+                  linear-gradient(180deg, var(--navy) 0%, rgba(11,37,69,.9) 5%, rgba(11,37,69,.72) 10%, rgba(11,37,69,.5) 16%, rgba(11,37,69,.3) 22%, rgba(11,37,69,.14) 28%, rgba(11,37,69,.04) 34%, transparent 42%);
     }
     .hero::before {
       content: '';
@@ -171,8 +172,23 @@
     .hero-netlines line:nth-child(3n+1) { animation-duration: 3.1s; }
     .hero-netlines line:nth-child(3n+2) { animation-duration: 2.3s; animation-direction: reverse; }
     @keyframes netflow { to { stroke-dashoffset: -40; } }
+    /* ── Slow orbiting ring around the network cluster — quiet "system" signature ── */
+    .net-orbit { transform-origin: center; transform-box: fill-box; animation: netOrbitSpin 90s linear infinite; }
+    @keyframes netOrbitSpin { to { transform: rotate(360deg); } }
+    /* ── Hub nodes: the two key "intelligence points" get a soft glow + expanding signal ring ── */
+    .nethub-glow { filter: url(#nodeGlow); }
+    .nethub-ring { fill: none; stroke: var(--amber2); stroke-width: 1; transform-origin: center; transform-box: fill-box; animation: netHubRing 3.2s ease-out infinite; }
+    .nethub-ring.delay { animation-delay: 1.6s; }
+    @keyframes netHubRing { 0% { transform: scale(.45); opacity: .85; } 100% { transform: scale(2.6); opacity: 0; } }
+    /* ── Fine data-dust: sparse twinkling points that thicken the constellation ── */
+    .netdust { animation: netDustTwinkle 4.5s ease-in-out infinite; }
+    .netdust:nth-child(2n) { animation-delay: 1.1s; }
+    .netdust:nth-child(3n) { animation-delay: 2.3s; }
+    @keyframes netDustTwinkle { 0%, 100% { opacity: .16; } 50% { opacity: .58; } }
     @media (prefers-reduced-motion: reduce) {
-      .netnode, .hero-netlines line, .hero::before, .hero-aurora, .hero-eyebrow-dot .ring, .hero-photo img { animation: none !important; }
+      .netnode, .hero-netlines line, .hero::before, .hero-aurora, .hero-eyebrow-dot .ring, .hero-photo img,
+      .net-orbit, .nethub-ring, .netdust { animation: none !important; }
+      .nethub-ring { opacity: 0; }
     }
     .hero-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; z-index: 4; }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green2); background: rgba(26,122,85,.14); border: 1px solid rgba(35,163,110,.25); padding: 8px 18px; border-radius: 22px; margin-bottom: 24px; box-shadow: 0 0 0 4px rgba(35,163,110,.06); }
@@ -816,10 +832,39 @@
         <mask id="netMask">
           <rect width="1200" height="500" fill="url(#netFade)"/>
         </mask>
+        <linearGradient id="netLineGrad" x1="700" y1="80" x2="1120" y2="400" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#7ec8f5" stop-opacity=".55"/>
+          <stop offset="55%" stop-color="#a7e0c9" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#f2b155" stop-opacity=".32"/>
+        </linearGradient>
+        <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f2b155" stop-opacity=".5"/>
+          <stop offset="100%" stop-color="#f2b155" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="nodeGlow" x="-160%" y="-160%" width="420%" height="420%">
+          <feGaussianBlur stdDeviation="2.6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
       </defs>
       <rect width="1200" height="500" fill="url(#heroDots)" mask="url(#heroDotsMask)"/>
+      <!-- Quiet orbiting ring — reinforces the "system", not just scattered points -->
+      <circle class="net-orbit" cx="920" cy="230" r="205" fill="none" stroke="rgba(126,200,245,.14)" stroke-width="1" stroke-dasharray="1 11" mask="url(#netMask)"/>
+      <!-- Fine data-dust: extra depth around the constellation -->
+      <g class="netdust-layer" fill="#cfe8ff" mask="url(#netMask)">
+        <circle class="netdust" cx="720" cy="180" r="1.3"/>
+        <circle class="netdust" cx="945" cy="115" r="1.3"/>
+        <circle class="netdust" cx="1000" cy="300" r="1.3"/>
+        <circle class="netdust" cx="805" cy="285" r="1.3"/>
+        <circle class="netdust" cx="880" cy="345" r="1.3"/>
+        <circle class="netdust" cx="1000" cy="80" r="1.3"/>
+        <circle class="netdust" cx="1140" cy="280" r="1.3"/>
+        <circle class="netdust" cx="740" cy="270" r="1.3"/>
+      </g>
       <!-- Signature motif: a data-intelligence network, evidence points connecting into a system -->
-      <g class="hero-netlines" mask="url(#netMask)" stroke="rgba(126,200,245,.4)" stroke-width="1">
+      <g class="hero-netlines" mask="url(#netMask)" stroke="url(#netLineGrad)" stroke-width="1">
         <line x1="760" y1="120" x2="880" y2="80"/>
         <line x1="880" y1="80" x2="1010" y2="140"/>
         <line x1="760" y1="120" x2="840" y2="220"/>
@@ -835,7 +880,7 @@
         <line x1="700" y1="220" x2="760" y2="120"/>
         <line x1="700" y1="220" x2="840" y2="220"/>
       </g>
-      <g fill="#7ec8f5">
+      <g fill="#7ec8f5" filter="url(#nodeGlow)">
         <circle class="netnode n1" cx="760" cy="120" r="3.2"/>
         <circle class="netnode n2" cx="880" cy="80" r="3.2"/>
         <circle class="netnode n3" cx="1010" cy="140" r="3.2"/>
@@ -847,7 +892,12 @@
         <circle class="netnode n2" cx="1040" cy="400" r="3.2"/>
         <circle class="netnode n1" cx="700" cy="220" r="3.2"/>
       </g>
-      <g fill="#f2b155">
+      <!-- Hub nodes: the two evidence points the whole system converges on -->
+      <circle cx="920" cy="360" r="26" fill="url(#hubGlow)"/>
+      <circle cx="840" cy="220" r="26" fill="url(#hubGlow)"/>
+      <circle class="nethub-ring" cx="920" cy="360" r="4.4"/>
+      <circle class="nethub-ring delay" cx="840" cy="220" r="4.4"/>
+      <g fill="#f2b155" class="nethub-glow">
         <circle class="netnode n3" cx="920" cy="360" r="4.4"/>
         <circle class="netnode n1" cx="840" cy="220" r="4.4"/>
       </g>
