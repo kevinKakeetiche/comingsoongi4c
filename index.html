@@ -861,9 +861,39 @@
         <p>Our approach goes beyond implementing projects. We generate evidence before action, strengthen institutions, deliver integrated solutions across multiple development sectors, and build local capacity so that communities and systems continue to thrive long after projects end.</p>
       </div>
       <div>
-        <div class="about-media">
-          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Community%20Health%20Worker%20treats%20child%20(19165929668).jpg?width=700" alt="Community health worker supporting local intelligence and care" loading="lazy" />
+        <div class="about-media" style="position:relative;">
+          <video id="aboutStoryVideo" src="assets/gi4c-story.mp4" autoplay loop playsinline aria-label="Short film introducing GI4C's community health, agriculture, and systems strengthening work" style="width:100%; height:100%; object-fit:cover;"></video>
+          <div class="about-media-caption">GI4C in action: strengthening health systems and livelihoods in the communities we serve.</div>
+          <button type="button" id="aboutStorySoundBtn" aria-label="Enable sound" style="display:none; position:absolute; top:12px; right:12px; z-index:2; align-items:center; gap:6px; background:rgba(11,37,69,.78); color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:20px; padding:7px 13px; font-family:var(--ff-body); font-size:12.5px; font-weight:500; cursor:pointer; backdrop-filter:blur(4px);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4V5Z" stroke-linejoin="round"/><path d="M16 8a5 5 0 0 1 0 8" stroke-linecap="round"/></svg>
+            Enable sound
+          </button>
         </div>
+        <script>
+          (function () {
+            var vid = document.getElementById('aboutStoryVideo');
+            var btn = document.getElementById('aboutStorySoundBtn');
+            if (!vid || !btn) return;
+            var playWithSound = function () {
+              vid.muted = false;
+              var p = vid.play();
+              if (p && p.catch) {
+                p.catch(function () {
+                  // Autoplay with sound blocked by the browser — fall back to muted autoplay and offer a manual toggle.
+                  vid.muted = true;
+                  vid.play().catch(function () {});
+                  btn.style.display = 'inline-flex';
+                });
+              }
+            };
+            playWithSound();
+            btn.addEventListener('click', function () {
+              vid.muted = false;
+              vid.play();
+              btn.style.display = 'none';
+            });
+          })();
+        </script>
       </div>
     </div>
     <div class="about-grid">
