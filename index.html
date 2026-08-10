@@ -825,7 +825,7 @@
         <mask id="heroDotsMask">
           <rect width="1200" height="500" fill="url(#heroDotsFade)"/>
         </mask>
-        <radialGradient id="netFade" cx="76%" cy="42%" r="52%">
+        <radialGradient id="netFade" cx="77%" cy="47%" r="58%">
           <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
           <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
         </radialGradient>
@@ -851,55 +851,70 @@
       </defs>
       <rect width="1200" height="500" fill="url(#heroDots)" mask="url(#heroDotsMask)"/>
       <!-- Quiet orbiting ring — reinforces the "system", not just scattered points -->
-      <circle class="net-orbit" cx="920" cy="230" r="205" fill="none" stroke="rgba(126,200,245,.14)" stroke-width="1" stroke-dasharray="1 11" mask="url(#netMask)"/>
-      <!-- Fine data-dust: extra depth around the constellation -->
+      <circle class="net-orbit" cx="928" cy="238" r="210" fill="none" stroke="rgba(126,200,245,.14)" stroke-width="1" stroke-dasharray="1 11" mask="url(#netMask)"/>
+      <!-- Fine data-dust: extra depth inside the Cameroon silhouette -->
       <g class="netdust-layer" fill="#cfe8ff" mask="url(#netMask)">
-        <circle class="netdust" cx="720" cy="180" r="1.3"/>
-        <circle class="netdust" cx="945" cy="115" r="1.3"/>
-        <circle class="netdust" cx="1000" cy="300" r="1.3"/>
-        <circle class="netdust" cx="805" cy="285" r="1.3"/>
-        <circle class="netdust" cx="880" cy="345" r="1.3"/>
-        <circle class="netdust" cx="1000" cy="80" r="1.3"/>
-        <circle class="netdust" cx="1140" cy="280" r="1.3"/>
-        <circle class="netdust" cx="740" cy="270" r="1.3"/>
+        <circle class="netdust" cx="900" cy="230" r="1.3"/>
+        <circle class="netdust" cx="960" cy="180" r="1.3"/>
+        <circle class="netdust" cx="850" cy="280" r="1.3"/>
+        <circle class="netdust" cx="1010" cy="170" r="1.3"/>
+        <circle class="netdust" cx="800" cy="320" r="1.3"/>
+        <circle class="netdust" cx="990" cy="120" r="1.3"/>
+        <circle class="netdust" cx="1080" cy="330" r="1.3"/>
+        <circle class="netdust" cx="770" cy="370" r="1.3"/>
       </g>
-      <!-- Signature motif: a data-intelligence network, evidence points connecting into a system -->
+      <!-- Signature motif: nodes traced along Cameroon's outline, from the Lake Chad tip in the north down to the Gulf of Guinea coast -->
       <g class="hero-netlines" mask="url(#netMask)" stroke="url(#netLineGrad)" stroke-width="1">
-        <line x1="760" y1="120" x2="880" y2="80"/>
-        <line x1="880" y1="80" x2="1010" y2="140"/>
-        <line x1="760" y1="120" x2="840" y2="220"/>
-        <line x1="840" y1="220" x2="1010" y2="140"/>
-        <line x1="840" y1="220" x2="770" y2="320"/>
-        <line x1="770" y1="320" x2="920" y2="360"/>
-        <line x1="840" y1="220" x2="960" y2="270"/>
-        <line x1="960" y1="270" x2="920" y2="360"/>
-        <line x1="960" y1="270" x2="1080" y2="240"/>
-        <line x1="1010" y1="140" x2="1120" y2="200"/>
-        <line x1="1080" y1="240" x2="1120" y2="200"/>
-        <line x1="920" y1="360" x2="1040" y2="400"/>
-        <line x1="700" y1="220" x2="760" y2="120"/>
-        <line x1="700" y1="220" x2="840" y2="220"/>
+        <line x1="680" y1="343" x2="748" y2="420"/>
+        <line x1="748" y1="420" x2="1140" y2="417"/>
+        <line x1="1140" y1="417" x2="1122" y2="310"/>
+        <line x1="1122" y1="310" x2="1085" y2="243"/>
+        <line x1="1085" y1="243" x2="1042" y2="207"/>
+        <line x1="1042" y1="207" x2="1017" y2="83"/>
+        <line x1="1017" y1="83" x2="1042" y2="60"/>
+        <line x1="1042" y1="60" x2="974" y2="87"/>
+        <line x1="974" y1="87" x2="944" y2="127"/>
+        <line x1="944" y1="127" x2="987" y2="157"/>
+        <line x1="987" y1="157" x2="907" y2="180"/>
+        <line x1="907" y1="180" x2="864" y2="213"/>
+        <line x1="864" y1="213" x2="840" y2="260"/>
+        <line x1="840" y1="260" x2="729" y2="280"/>
+        <line x1="729" y1="280" x2="717" y2="300"/>
+        <line x1="717" y1="300" x2="711" y2="350"/>
+        <line x1="711" y1="350" x2="680" y2="343"/>
+        <!-- interior links from the two hub cities to nearby border nodes -->
+        <line x1="852" y1="364" x2="748" y2="420"/>
+        <line x1="852" y1="364" x2="840" y2="260"/>
+        <line x1="741" y1="358" x2="711" y2="350"/>
+        <line x1="741" y1="358" x2="680" y2="343"/>
       </g>
       <g fill="#7ec8f5" filter="url(#nodeGlow)">
-        <circle class="netnode n1" cx="760" cy="120" r="3.2"/>
-        <circle class="netnode n2" cx="880" cy="80" r="3.2"/>
-        <circle class="netnode n3" cx="1010" cy="140" r="3.2"/>
-        <circle class="netnode n4" cx="840" cy="220" r="3.2"/>
-        <circle class="netnode n1" cx="770" cy="320" r="3.2"/>
-        <circle class="netnode n2" cx="960" cy="270" r="3.2"/>
-        <circle class="netnode n3" cx="1080" cy="240" r="3.2"/>
-        <circle class="netnode n4" cx="1120" cy="200" r="3.2"/>
-        <circle class="netnode n2" cx="1040" cy="400" r="3.2"/>
-        <circle class="netnode n1" cx="700" cy="220" r="3.2"/>
+        <circle class="netnode n1" cx="680" cy="343" r="3.2"/>
+        <circle class="netnode n2" cx="748" cy="420" r="3.2"/>
+        <circle class="netnode n3" cx="1140" cy="417" r="3.2"/>
+        <circle class="netnode n4" cx="1122" cy="310" r="3.2"/>
+        <circle class="netnode n1" cx="1085" cy="243" r="3.2"/>
+        <circle class="netnode n2" cx="1042" cy="207" r="3.2"/>
+        <circle class="netnode n3" cx="1017" cy="83" r="3.2"/>
+        <circle class="netnode n4" cx="1042" cy="60" r="3.2"/>
+        <circle class="netnode n1" cx="974" cy="87" r="3.2"/>
+        <circle class="netnode n2" cx="944" cy="127" r="3.2"/>
+        <circle class="netnode n3" cx="987" cy="157" r="3.2"/>
+        <circle class="netnode n4" cx="907" cy="180" r="3.2"/>
+        <circle class="netnode n1" cx="864" cy="213" r="3.2"/>
+        <circle class="netnode n2" cx="840" cy="260" r="3.2"/>
+        <circle class="netnode n3" cx="729" cy="280" r="3.2"/>
+        <circle class="netnode n4" cx="717" cy="300" r="3.2"/>
+        <circle class="netnode n1" cx="711" cy="350" r="3.2"/>
       </g>
-      <!-- Hub nodes: the two evidence points the whole system converges on -->
-      <circle cx="920" cy="360" r="26" fill="url(#hubGlow)"/>
-      <circle cx="840" cy="220" r="26" fill="url(#hubGlow)"/>
-      <circle class="nethub-ring" cx="920" cy="360" r="4.4"/>
-      <circle class="nethub-ring delay" cx="840" cy="220" r="4.4"/>
+      <!-- Hub nodes: Yaoundé (capital) and Douala (economic hub) — the two points the whole system converges on -->
+      <circle cx="852" cy="364" r="26" fill="url(#hubGlow)"/>
+      <circle cx="741" cy="358" r="26" fill="url(#hubGlow)"/>
+      <circle class="nethub-ring" cx="852" cy="364" r="4.4"/>
+      <circle class="nethub-ring delay" cx="741" cy="358" r="4.4"/>
       <g fill="#f2b155" class="nethub-glow">
-        <circle class="netnode n3" cx="920" cy="360" r="4.4"/>
-        <circle class="netnode n1" cx="840" cy="220" r="4.4"/>
+        <circle class="netnode n3" cx="852" cy="364" r="4.4"/>
+        <circle class="netnode n1" cx="741" cy="358" r="4.4"/>
       </g>
     </svg>
   </div>
