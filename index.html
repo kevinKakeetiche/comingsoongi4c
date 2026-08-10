@@ -128,13 +128,13 @@
     .hero { background: linear-gradient(165deg, var(--navy) 0%, #0d2c52 55%, #0a2140 100%); color: #fff; padding: 84px 24px 76px; position: relative; overflow: hidden; }
     /* ── Public-health photo layer, faded elegantly into the navy gradient ── */
     .hero-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; filter: saturate(.82) contrast(1.04) brightness(.92); opacity: .5; animation: heroPhotoZoom 24s ease-in-out infinite alternate; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; filter: saturate(.92) contrast(1.07) brightness(1.02); opacity: .86; animation: heroPhotoZoom 24s ease-in-out infinite alternate; }
     @keyframes heroPhotoZoom { from { transform: scale(1); } to { transform: scale(1.09); } }
     .hero-photo::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(100deg, var(--navy) 0%, rgba(11,37,69,.94) 20%, rgba(11,37,69,.62) 42%, rgba(11,37,69,.28) 65%, rgba(10,33,64,.55) 100%),
-                  linear-gradient(0deg, var(--navy) 0%, rgba(11,37,69,.2) 22%, transparent 45%);
+      background: linear-gradient(100deg, var(--navy) 0%, rgba(11,37,69,.95) 14%, rgba(11,37,69,.68) 30%, rgba(11,37,69,.32) 44%, rgba(11,37,69,.06) 60%, rgba(10,33,64,.14) 100%),
+                  linear-gradient(0deg, var(--navy) 0%, rgba(11,37,69,.2) 18%, transparent 38%);
     }
     .hero::before {
       content: '';
@@ -188,7 +188,7 @@
     .hero-visual-parallax { display: flex; flex-direction: column; gap: 10px; transition: transform .15s ease-out; will-change: transform; }
     @keyframes cardFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
     @media (prefers-reduced-motion: reduce) { .hero-card-float { animation: none; } }
-    .hero-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r); padding: 14px 18px; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(4px); transition: transform .28s cubic-bezier(.25,.8,.25,1), box-shadow .28s cubic-bezier(.25,.8,.25,1), border-color .28s ease; }
+    .hero-card { background: rgba(8,26,50,.52); border: 1px solid rgba(255,255,255,.16); border-radius: var(--r); padding: 14px 18px; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(8px); transition: transform .28s cubic-bezier(.25,.8,.25,1), box-shadow .28s cubic-bezier(.25,.8,.25,1), border-color .28s ease; }
     .hero-card:hover { transform: translateY(-6px) scale(1.045); box-shadow: 0 28px 70px rgba(7, 25, 71, 0.18); border-color: rgba(255,255,255,.32); }
     .hero-card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; position: relative; overflow: hidden; }
     .hero-card-icon::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 48%, transparent 66%); transform: translateX(-140%); animation: iconSheen 4.5s ease-in-out infinite; }
