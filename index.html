@@ -126,9 +126,19 @@
 
     /* ── HERO ── */
     .hero { background: linear-gradient(165deg, var(--navy) 0%, #0d2c52 55%, #0a2140 100%); color: #fff; padding: 84px 24px 76px; position: relative; overflow: hidden; }
-    .hero::before {
+    /* ── Public-health photo layer, faded elegantly into the navy gradient ── */
+    .hero-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; filter: saturate(.82) contrast(1.04) brightness(.92); opacity: .5; animation: heroPhotoZoom 24s ease-in-out infinite alternate; }
+    @keyframes heroPhotoZoom { from { transform: scale(1); } to { transform: scale(1.09); } }
+    .hero-photo::after {
       content: '';
       position: absolute; inset: 0;
+      background: linear-gradient(100deg, var(--navy) 0%, rgba(11,37,69,.94) 20%, rgba(11,37,69,.62) 42%, rgba(11,37,69,.28) 65%, rgba(10,33,64,.55) 100%),
+                  linear-gradient(0deg, var(--navy) 0%, rgba(11,37,69,.2) 22%, transparent 45%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
       background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(26,92,158,.35) 0%, transparent 70%),
                   radial-gradient(ellipse 40% 50% at 10% 80%, rgba(26,122,85,.2) 0%, transparent 60%);
       pointer-events: none;
@@ -139,14 +149,14 @@
       50% { opacity: 1; transform: scale(1.06); }
     }
     /* ── Aurora glow orbs — slow drifting light behind hero content ── */
-    .hero-aurora { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; z-index: 0; will-change: transform; }
+    .hero-aurora { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; z-index: 2; will-change: transform; }
     .hero-aurora-1 { width: 420px; height: 420px; top: -140px; right: 6%; background: radial-gradient(circle, rgba(58,134,200,.35) 0%, transparent 70%); animation: auroraDrift1 16s ease-in-out infinite; }
     .hero-aurora-2 { width: 340px; height: 340px; bottom: -120px; left: 4%; background: radial-gradient(circle, rgba(35,163,110,.28) 0%, transparent 70%); animation: auroraDrift2 13s ease-in-out infinite; }
     .hero-aurora-3 { width: 260px; height: 260px; top: 30%; left: 42%; background: radial-gradient(circle, rgba(242,177,85,.16) 0%, transparent 70%); animation: auroraDrift3 20s ease-in-out infinite; }
     @keyframes auroraDrift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-38px,32px) scale(1.12); } }
     @keyframes auroraDrift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-26px) scale(1.08); } }
     @keyframes auroraDrift3 { 0%,100% { transform: translate(0,0) scale(1); opacity:.7; } 50% { transform: translate(24px,20px) scale(1.15); opacity:1; } }
-    .hero-dotgrid { position: absolute; inset: 0; opacity: .9; pointer-events: none; z-index: 1; }
+    .hero-dotgrid { position: absolute; inset: 0; opacity: .9; pointer-events: none; z-index: 3; }
     .hero-dotgrid svg { width: 100%; height: 100%; }
     .netnode { animation: netpulse 3.6s ease-in-out infinite; transform-origin: center; }
     .netnode.n2 { animation-delay: .6s; }
@@ -162,9 +172,9 @@
     .hero-netlines line:nth-child(3n+2) { animation-duration: 2.3s; animation-direction: reverse; }
     @keyframes netflow { to { stroke-dashoffset: -40; } }
     @media (prefers-reduced-motion: reduce) {
-      .netnode, .hero-netlines line, .hero::before, .hero-aurora, .hero-eyebrow-dot .ring { animation: none !important; }
+      .netnode, .hero-netlines line, .hero::before, .hero-aurora, .hero-eyebrow-dot .ring, .hero-photo img { animation: none !important; }
     }
-    .hero-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; z-index: 2; }
+    .hero-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; z-index: 4; }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green2); background: rgba(26,122,85,.14); border: 1px solid rgba(35,163,110,.25); padding: 8px 18px; border-radius: 22px; margin-bottom: 24px; box-shadow: 0 0 0 4px rgba(35,163,110,.06); }
     .hero-eyebrow-dot { position: relative; width: 12px; height: 12px; flex-shrink: 0; }
     .hero-eyebrow-dot .ring { transform-origin: 6px 6px; animation: liveRing 2.2s ease-out infinite; }
@@ -780,6 +790,9 @@
 <main id="main-content">
 <!-- HERO -->
 <section id="home" class="hero">
+  <div class="hero-photo" aria-hidden="true">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20fever%20vaccination%2003.jpg?width=1600" alt="" loading="eager" />
+  </div>
   <div class="hero-aurora hero-aurora-1" aria-hidden="true"></div>
   <div class="hero-aurora hero-aurora-2" aria-hidden="true"></div>
   <div class="hero-aurora hero-aurora-3" aria-hidden="true"></div>
