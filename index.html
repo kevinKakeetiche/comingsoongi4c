@@ -385,11 +385,16 @@
 
     /* ── IMPACT MAP ── */
     .map-wrapper { margin-top: 40px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
-    .map-body { background: #e8f4f8; height: 240px; position: relative; display: flex; align-items: center; justify-content: center; }
-    .map-body svg { width: 100%; height: 100%; opacity: .18; }
-    .map-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; padding: 0 16px; text-align: center; }
-    .map-overlay p { font-size: 13px; color: var(--blue); font-weight: 500; }
-    .map-pin-demo { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .map-top-tag { display: flex; align-items: center; gap: 7px; padding: 14px 22px; font-size: 13px; color: var(--blue); font-weight: 500; border-bottom: 1px solid var(--border); }
+    .map-body { background: linear-gradient(180deg, #eef6fb, #e3f0f8); min-height: 380px; position: relative; display: flex; align-items: center; justify-content: center; padding: 30px 16px; }
+    .map-body svg { width: auto; height: 100%; max-height: 420px; max-width: 100%; overflow: visible; }
+    .cm-outline { fill: var(--mint); stroke: var(--green); stroke-width: 3; filter: drop-shadow(0 6px 14px rgba(10,37,69,.12)); }
+    .cm-pin-dot { fill: var(--green2); stroke: #fff; stroke-width: 1.5; }
+    .cm-pin-ring { fill: none; stroke: var(--green2); stroke-width: 2; opacity: .7; transform-box: fill-box; transform-origin: center; animation: mapPinPing 2.6s ease-out infinite; }
+    .cm-pin:nth-child(3n+2) .cm-pin-ring { animation-delay: .5s; }
+    .cm-pin:nth-child(3n) .cm-pin-ring { animation-delay: 1s; }
+    @keyframes mapPinPing { 0% { transform: scale(.5); opacity: .8; } 100% { transform: scale(2.5); opacity: 0; } }
+    .map-legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 18px 22px 22px; border-top: 1px solid var(--border); }
     .mpin { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px 5px 10px; font-size: 12px; color: var(--navy); display: flex; align-items: center; gap: 5px; }
     .mpin::before {
       content: ''; width: 12px; height: 12px; flex-shrink: 0;
@@ -1379,22 +1384,36 @@
     <h2 class="section-title reveal-line reveal">Impact Map <span style="font-size:13px; font-family:var(--ff-body); background:var(--green); color:#fff; padding:3px 10px; border-radius:20px; vertical-align:middle;">Interactive GIS</span></h2>
     <p class="section-sub reveal">Every intervention tells a story of change. Our interactive impact map showcases where <strong>GI4C</strong> works, the communities we support, and the measurable outcomes achieved through our programmes. From strengthened health systems and empowered communities to climate resilience and socio-economic development, each location highlights the evidence, partnerships, and impact behind our work.</p>
     <div class="map-wrapper">
+      <div class="map-top-tag">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6.5v14L9 18l6 2.5 6-2.5v-14L15 6.5 9 4Z" stroke-linejoin="round"/><path d="M9 4v14M15 6.5v14" stroke-linecap="round"/></svg>
+        Live intervention map — powered by GIS
+      </div>
       <div class="map-body">
-        <svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="800" height="300" fill="#d0e8f5"/>
-          <ellipse cx="200" cy="150" rx="120" ry="90" fill="#c0dff0"/>
-          <ellipse cx="450" cy="130" rx="200" ry="100" fill="#b8d8ec"/>
-          <ellipse cx="650" cy="180" rx="130" ry="80" fill="#c8e2f2"/>
+        <svg viewBox="0 0 340 520" role="img" aria-label="Map of Cameroon showing GI4C's regions of intervention">
+          <path class="cm-outline" d="M195 18 Q215 40 222 75 Q230 110 240 145 Q250 175 260 205 Q270 240 268 275 Q266 310 255 345 Q248 370 232 395 Q218 415 200 430 Q178 448 155 452 Q130 456 108 442 Q88 428 78 405 Q68 380 62 350 Q56 320 50 290 Q44 265 48 240 Q52 215 45 190 Q38 165 45 138 Q52 112 62 88 Q74 62 92 45 Q112 28 135 20 Q160 14 195 18 Z"/>
+          <g class="cm-pin"><title>Far North</title><circle class="cm-pin-ring" cx="212" cy="58" r="9"/><circle class="cm-pin-dot" cx="212" cy="58" r="5"/></g>
+          <g class="cm-pin"><title>North</title><circle class="cm-pin-ring" cx="220" cy="128" r="9"/><circle class="cm-pin-dot" cx="220" cy="128" r="5"/></g>
+          <g class="cm-pin"><title>Adamawa</title><circle class="cm-pin-ring" cx="205" cy="192" r="9"/><circle class="cm-pin-dot" cx="205" cy="192" r="5"/></g>
+          <g class="cm-pin"><title>North-West</title><circle class="cm-pin-ring" cx="88" cy="198" r="9"/><circle class="cm-pin-dot" cx="88" cy="198" r="5"/></g>
+          <g class="cm-pin"><title>West</title><circle class="cm-pin-ring" cx="115" cy="228" r="9"/><circle class="cm-pin-dot" cx="115" cy="228" r="5"/></g>
+          <g class="cm-pin"><title>South-West</title><circle class="cm-pin-ring" cx="68" cy="248" r="9"/><circle class="cm-pin-dot" cx="68" cy="248" r="5"/></g>
+          <g class="cm-pin"><title>Littoral</title><circle class="cm-pin-ring" cx="92" cy="272" r="9"/><circle class="cm-pin-dot" cx="92" cy="272" r="5"/></g>
+          <g class="cm-pin"><title>Centre</title><circle class="cm-pin-ring" cx="163" cy="292" r="9"/><circle class="cm-pin-dot" cx="163" cy="292" r="5"/></g>
+          <g class="cm-pin"><title>East</title><circle class="cm-pin-ring" cx="222" cy="282" r="9"/><circle class="cm-pin-dot" cx="222" cy="282" r="5"/></g>
+          <g class="cm-pin"><title>South</title><circle class="cm-pin-ring" cx="150" cy="382" r="9"/><circle class="cm-pin-dot" cx="150" cy="382" r="5"/></g>
         </svg>
-        <div class="map-overlay">
-          <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:6px;"><path d="M9 4 3 6.5v14L9 18l6 2.5 6-2.5v-14L15 6.5 9 4Z" stroke-linejoin="round"/><path d="M9 4v14M15 6.5v14" stroke-linecap="round"/></svg>Live intervention map — powered by GIS</p>
-          <div class="map-pin-demo">
-            <div class="mpin">Noun Region</div>
-            <div class="mpin">Adamawa</div>
-            <div class="mpin">Far North</div>
-            <div class="mpin">Centre</div>
-          </div>
-        </div>
+      </div>
+      <div class="map-legend">
+        <div class="mpin">Far North</div>
+        <div class="mpin">North</div>
+        <div class="mpin">Adamawa</div>
+        <div class="mpin">North-West</div>
+        <div class="mpin">West</div>
+        <div class="mpin">South-West</div>
+        <div class="mpin">Littoral</div>
+        <div class="mpin">Centre</div>
+        <div class="mpin">East</div>
+        <div class="mpin">South</div>
       </div>
     </div>
   </div>
