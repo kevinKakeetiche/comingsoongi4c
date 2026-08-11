@@ -124,26 +124,30 @@
     .btn-white-outline:hover { background: rgba(255,255,255,.1); transform: translateY(-2px); }
     .btn:disabled { opacity: .5; cursor: not-allowed; }
 
-    /* ── NAV DONATE BUTTON: a bespoke pill CTA, distinct from the generic .btn-green used elsewhere ── */
+    /* ── NAV DONATE LINK: reads as plain text/icon at rest, only reveals itself as a button on hover ── */
     .nav-donate-btn {
       position: relative; isolation: isolate; overflow: hidden;
       display: inline-flex; align-items: center; gap: 7px;
       padding: 9px 20px 9px 15px; border-radius: 999px;
       font-family: var(--ff-body); font-size: 13px; font-weight: 600; letter-spacing: .2px;
-      color: #fff; border: none; cursor: pointer;
-      background: linear-gradient(135deg, #2bb37e 0%, var(--green2) 42%, var(--green) 78%, #0f5c3f 100%);
-      box-shadow: 0 4px 14px rgba(20,96,63,.34), inset 0 1px 0 rgba(255,255,255,.22);
-      transition: transform .22s var(--ease), box-shadow .22s ease;
+      color: var(--green); border: none; cursor: pointer;
+      background: transparent;
+      box-shadow: 0 0 0 rgba(20,96,63,0);
+      transition: color .26s ease, background .34s var(--ease), box-shadow .34s var(--ease), transform .22s var(--ease);
     }
     .nav-donate-btn::before {
       content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background: linear-gradient(115deg, transparent 22%, rgba(255,255,255,.4) 44%, rgba(255,255,255,.4) 48%, transparent 62%);
       transform: translateX(-130%); transition: transform .7s var(--ease);
     }
-    .nav-donate-btn:hover::before { transform: translateX(130%); }
-    .nav-donate-btn:hover {
-      transform: translateY(-2px);
+    .nav-donate-btn:hover::before,
+    .nav-donate-btn:focus-visible::before { transform: translateX(130%); }
+    .nav-donate-btn:hover,
+    .nav-donate-btn:focus-visible {
+      color: #fff;
+      background: linear-gradient(135deg, #2bb37e 0%, var(--green2) 42%, var(--green) 78%, #0f5c3f 100%);
       box-shadow: 0 12px 26px rgba(20,96,63,.4), inset 0 1px 0 rgba(255,255,255,.3);
+      transform: translateY(-2px);
     }
     .nav-donate-btn:active { transform: translateY(0); }
     .nav-donate-btn .ndb-heart {
@@ -843,10 +847,10 @@
       </div>
       <a href="#contact">Contact</a>
       <a href="#report" class="report-link">Report a Concern</a>
-      <a href="#donate" class="btn nav-mobile-donate nav-donate-btn"><svg class="ndb-heart" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ndbHeartGradM" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#ffffff"/><stop offset="50%" stop-color="#e63946"/><stop offset="100%" stop-color="#e63946"/></linearGradient></defs><path fill="url(#ndbHeartGradM)" d="M12 21s-7.6-4.75-10.06-9.36C.42 8.1 2.32 4.2 6.2 4.2c2.06 0 3.8 1.1 5.55 3.15 1.75-2.05 3.5-3.15 5.55-3.15 3.88 0 5.78 3.9 4.26 7.44C19.6 16.25 12 21 12 21Z"/></svg><span>Donate</span></a>
+      <a href="#donate" class="btn nav-mobile-donate nav-donate-btn"><svg class="ndb-heart" width="14" height="14" viewBox="0 0 24 24" fill="#e63946" aria-hidden="true"><path d="M12 21s-7.6-4.75-10.06-9.36C.42 8.1 2.32 4.2 6.2 4.2c2.06 0 3.8 1.1 5.55 3.15 1.75-2.05 3.5-3.15 5.55-3.15 3.88 0 5.78 3.9 4.26 7.44C19.6 16.25 12 21 12 21Z"/></svg><span>Donate</span></a>
     </div>
     <div class="nav-cta">
-      <a href="#donate" class="nav-donate-btn"><svg class="ndb-heart" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ndbHeartGradD" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#ffffff"/><stop offset="50%" stop-color="#e63946"/><stop offset="100%" stop-color="#e63946"/></linearGradient></defs><path fill="url(#ndbHeartGradD)" d="M12 21s-7.6-4.75-10.06-9.36C.42 8.1 2.32 4.2 6.2 4.2c2.06 0 3.8 1.1 5.55 3.15 1.75-2.05 3.5-3.15 5.55-3.15 3.88 0 5.78 3.9 4.26 7.44C19.6 16.25 12 21 12 21Z"/></svg><span>Donate</span></a>
+      <a href="#donate" class="nav-donate-btn"><svg class="ndb-heart" width="14" height="14" viewBox="0 0 24 24" fill="#e63946" aria-hidden="true"><path d="M12 21s-7.6-4.75-10.06-9.36C.42 8.1 2.32 4.2 6.2 4.2c2.06 0 3.8 1.1 5.55 3.15 1.75-2.05 3.5-3.15 5.55-3.15 3.88 0 5.78 3.9 4.26 7.44C19.6 16.25 12 21 12 21Z"/></svg><span>Donate</span></a>
     </div>
     <button class="nav-hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
