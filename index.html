@@ -70,9 +70,9 @@
     nav { background: rgba(255,255,255,.94); backdrop-filter: blur(10px) saturate(160%); -webkit-backdrop-filter: blur(10px) saturate(160%); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; transition: box-shadow .25s ease; }
     nav.is-scrolled { box-shadow: 0 8px 28px rgba(10,37,69,.07); }
     nav::after { content: ''; display: block; height: 1.5px; background: linear-gradient(90deg, var(--navy) 0%, var(--sky) 35%, var(--green2) 70%, var(--amber2) 100%); opacity: .55; }
-    .nav-inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; min-height: 84px; gap: 6px; flex-wrap: wrap; }
+    .nav-inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; min-height: 116px; gap: 6px; flex-wrap: wrap; }
     .nav-logo { display: flex; align-items: center; gap: 12px; margin-right: 26px; padding-right: 26px; border-right: 1px solid var(--border); flex-shrink: 0; }
-    .nav-logo img { width: 60px; height: 60px; border-radius: 13px; object-fit: contain; flex-shrink: 0; transition: transform .32s cubic-bezier(.25,.8,.25,1), box-shadow .32s cubic-bezier(.25,.8,.25,1), filter .32s ease; cursor: pointer; }
+    .nav-logo img { width: 100px; height: 100px; border-radius: 13px; object-fit: contain; flex-shrink: 0; transition: transform .32s cubic-bezier(.25,.8,.25,1), box-shadow .32s cubic-bezier(.25,.8,.25,1), filter .32s ease; cursor: pointer; }
     .nav-logo:hover img { transform: scale(1.35) rotate(-3deg); box-shadow: 0 10px 26px rgba(11,37,69,.28); filter: brightness(1.06); }
     .logo-mark { width: 60px; height: 60px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; transition: transform .32s cubic-bezier(.25,.8,.25,1), box-shadow .32s cubic-bezier(.25,.8,.25,1); cursor: pointer; }
     .nav-logo:hover .logo-mark { transform: scale(1.35) rotate(-3deg); box-shadow: 0 10px 26px rgba(11,37,69,.35); }
@@ -128,7 +128,7 @@
     .hero { background: linear-gradient(165deg, var(--navy) 0%, #0d2c52 55%, #0a2140 100%); color: #fff; padding: 84px 24px 76px; position: relative; overflow: hidden; }
     /* ── Public-health photo layer, faded elegantly into the navy gradient ── */
     .hero-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; filter: saturate(.96) contrast(1.08) brightness(1.05); opacity: .97; animation: heroPhotoZoom 24s ease-in-out infinite alternate; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; filter: saturate(.96) contrast(1.08) brightness(1.05); opacity: .97; animation: heroPhotoZoom 24s ease-in-out infinite alternate; }
     @keyframes heroPhotoZoom { from { transform: scale(1); } to { transform: scale(1.09); } }
     .hero-photo::after {
       content: '';
@@ -196,7 +196,7 @@
       .nethub-ring { opacity: 0; }
     }
     .hero-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; z-index: 4; }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green2); background: rgba(26,122,85,.14); border: 1px solid rgba(35,163,110,.25); padding: 8px 18px; border-radius: 22px; margin-bottom: 24px; box-shadow: 0 0 0 4px rgba(35,163,110,.06); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green2); background: rgba(26,122,85,.14); border: 1px solid rgba(35,163,110,.25); padding: 8px 18px; border-radius: 22px; margin-bottom: 24px; box-shadow: 0 0 0 4px rgba(35,163,110,.06); }
     .hero-eyebrow-dot { position: relative; width: 12px; height: 12px; flex-shrink: 0; }
     .hero-eyebrow-dot .ring { transform-origin: 6px 6px; animation: liveRing 2.2s ease-out infinite; }
     @keyframes liveRing { 0% { transform: scale(.4); opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
@@ -584,9 +584,9 @@
     @media (max-width: 768px) {
       /* Nav */
       .nav-links { display: none; }
-      .nav-inner { padding: 0 16px; height: 60px; }
+      .nav-inner { padding: 0 16px; height: 84px; }
       .nav-logo { margin-right: 12px; padding-right: 12px; }
-      .nav-logo img { width: 48px; height: 48px; }
+      .nav-logo img { width: 76px; height: 76px; }
       .logo-text { font-size: 17px; }
 
       /* Hero */
@@ -710,7 +710,7 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 84px;
         left: 0; right: 0;
         background: var(--white);
         border-bottom: 1px solid var(--border);
@@ -718,7 +718,7 @@
         gap: 4px;
         z-index: 200;
         box-shadow: 0 8px 24px rgba(10,37,69,.1);
-        max-height: calc(100vh - 60px);
+        max-height: calc(100vh - 84px);
         overflow-y: auto;
       }
       .nav-mobile-open .nav-links a {
@@ -812,7 +812,7 @@
 <!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-photo" aria-hidden="true">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20group%20of%20nurses%20attending%20to%20a%20baby.jpg?width=1600" alt="" loading="eager" />
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20l%27hopital%20au%20Cameroun%2002%20-%20obst%C3%A9trique.jpg?width=1600" alt="" loading="eager" />
   </div>
   <div class="hero-aurora hero-aurora-1" aria-hidden="true"></div>
   <div class="hero-aurora hero-aurora-2" aria-hidden="true"></div>
