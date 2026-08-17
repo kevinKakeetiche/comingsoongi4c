@@ -332,6 +332,20 @@
     .pillar-photo:hover img { transform: scale(1.06); }
     .pillar-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,37,69,.72) 0%, rgba(11,37,69,.05) 55%); }
     .pillar-photo span { position: absolute; left: 14px; bottom: 12px; color: #fff; font-size: 12.5px; font-weight: 600; letter-spacing: .2px; }
+
+    /* PORTFOLIO — FEATURED PROJECT VIDEOS */
+    .portfolio-feature { margin-top: 36px; }
+    .portfolio-feature-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+    .portfolio-feature-head h3 { font-family: var(--ff-display); font-size: 22px; color: var(--green); font-weight: 600; }
+    .portfolio-feature-tag { font-size: 12px; font-weight: 600; background: var(--mint); color: var(--green); padding: 4px 11px; border-radius: 20px; }
+    .portfolio-video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 6px; }
+    .portfolio-video-card { position: relative; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); background: var(--navy); }
+    .portfolio-video-card video { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; background: #000; }
+    .portfolio-video-caption { padding: 12px 14px 14px; font-size: 13px; color: var(--gray); line-height: 1.5; }
+    @media (max-width: 700px) {
+      .portfolio-video-grid { grid-template-columns: 1fr; }
+      .portfolio-video-card video { aspect-ratio: 9/13; }
+    }
     .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 40px; }
     .about-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; transition: transform .28s cubic-bezier(.25,.8,.25,1), box-shadow .28s cubic-bezier(.25,.8,.25,1), border-color .28s ease; text-align: left; }
     .about-card:hover { box-shadow: 0 26px 60px rgba(16, 39, 89, .16); transform: translateY(-7px); border-color: rgba(16, 39, 89, .14); }
@@ -1358,6 +1372,24 @@
     <div class="label">Our portfolio</div>
     <h2 class="section-title reveal-line reveal">Project Portfolio</h2>
     <p class="section-sub reveal">Our portfolio showcases the programmes, initiatives, and partnerships through which <strong>GI4C</strong> delivers its mission. From health systems strengthening and community intelligence to climate resilience and socio-economic development, our projects are designed to generate evidence, strengthen institutions, and improve lives through sustainable, data-driven solutions.</p>
+
+    <div class="portfolio-feature reveal">
+      <div class="portfolio-feature-head">
+        <h3>Operation 20K Trees — Ecosystem Restoration</h3>
+        <span class="portfolio-feature-tag">Environmental Sustainability &amp; Climate Resilience</span>
+      </div>
+      <p class="section-sub" style="margin-bottom:0;">Field footage from GI4C's ecosystem restoration initiative, where community volunteers and partners are working to plant 20,000 trees to restore degraded land, support biodiversity, and strengthen climate resilience in the communities we serve.</p>
+      <div class="portfolio-video-grid">
+        <div class="portfolio-video-card">
+          <video src="assets/videos/gi4c-20k-trees-1.mp4" controls playsinline preload="metadata" aria-label="GI4C Operation 20K Trees — volunteer planting a seedling"></video>
+          <p class="portfolio-video-caption">A volunteer plants a seedling as part of Operation 20K Trees.</p>
+        </div>
+        <div class="portfolio-video-card">
+          <video src="assets/videos/gi4c-20k-trees-2.mp4" controls playsinline preload="metadata" aria-label="GI4C Operation 20K Trees — team member planting a seedling"></video>
+          <p class="portfolio-video-caption">A team member secures a young tree during the restoration effort.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
