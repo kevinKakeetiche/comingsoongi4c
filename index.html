@@ -672,8 +672,28 @@
     .team-more-body { margin-top: 16px; animation: teamMoreIn .45s var(--ease) both; }
     @keyframes teamMoreIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
-    .team-join {
-      margin-top: 28px; background: var(--mint); border: 1px solid rgba(26,122,85,.2); border-radius: var(--r);
+    /* second card mirrors the first so the two don't read as a repeated block */
+    .team-lead-alt { grid-template-columns: 1fr 290px; margin-top: 24px; }
+    .team-lead-alt .team-photo { grid-column: 2; grid-row: 1; }
+    .team-lead-alt .team-body  { grid-column: 1; grid-row: 1; }
+    .team-role-blue { color: var(--blue); background: #eaf2fb; }
+    .team-role-blue .team-role-dot { background: var(--sky); }
+    .highlight-blue { border-left-color: var(--sky); }
+
+    .team-questions { list-style: none; margin: 12px 0 14px; display: flex; flex-direction: column; gap: 7px; }
+    .team-questions li {
+      position: relative; padding: 8px 12px 8px 34px; border-radius: 8px;
+      font-size: 13px; font-style: italic; color: var(--navy);
+      background: var(--off); border-left: 2px solid var(--sky);
+      transition: background-color .25s ease, transform .25s var(--ease);
+    }
+    .team-questions li::before {
+      content: '?'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      font-style: normal; font-weight: 700; font-size: 13px; color: var(--sky);
+    }
+    .team-questions li:hover { background: #eaf2fb; transform: translateX(4px); }
+
+    .team-join { margin-top: 28px; background: var(--mint); border: 1px solid rgba(26,122,85,.2); border-radius: var(--r);
       padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
     }
     .team-join p { font-size: 13.5px; color: var(--navy); max-width: 520px; }
@@ -849,6 +869,7 @@
       .about-grid { grid-template-columns: repeat(2, 1fr); }
       .about-top { grid-template-columns: 1fr; }
       .team-lead { grid-template-columns: 220px 1fr; gap: 26px; }
+      .team-lead-alt { grid-template-columns: 1fr 220px; }
       .about-media { aspect-ratio: 16/9; max-width: 480px; }
       .pillar-photos { grid-template-columns: repeat(3, 1fr); }
     }
@@ -874,7 +895,10 @@
       .about-grid { grid-template-columns: 1fr; }
 
       /* Team */
-      .team-lead { grid-template-columns: 1fr; gap: 22px; padding: 22px; }
+      .team-lead, .team-lead-alt { grid-template-columns: 1fr; gap: 22px; padding: 22px; }
+      /* stacked: photo always sits above the text, on both cards */
+      .team-lead-alt .team-photo { grid-column: 1; grid-row: 1; }
+      .team-lead-alt .team-body  { grid-column: 1; grid-row: 2; }
       .team-photo { max-width: 260px; margin: 0 auto; }
       .team-highlights { grid-template-columns: 1fr; }
       .team-join { flex-direction: column; align-items: stretch; text-align: center; }
@@ -1258,6 +1282,128 @@
               <p>Driven by a conviction that communities cannot be effectively developed if they remain invisible, Thomas founded <strong class="gi4c">GI4C</strong> to transform how community needs are understood and addressed. He envisioned an organisation that continuously generates community intelligence, uncovers underserved populations and emerging challenges, strengthens local systems, and translates evidence into coordinated action, better policies, and sustainable development outcomes. Under his leadership, <strong class="gi4c">GI4C</strong> is building a model where data is not merely collected, but transformed into actionable intelligence that empowers communities, informs decision-makers, and drives lasting impact.</p>
 
               <p>Thomas believes sustainable development begins with listening to communities, strengthening institutions, and enabling governments and development partners to make better decisions through high-quality evidence, innovation, and collaboration. His leadership is guided by integrity, accountability, local ownership, systems thinking, and a commitment to ensuring that no community remains unseen, unheard, or underserved.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </article>
+
+    <article class="team-lead team-lead-alt reveal-scale">
+      <div class="team-photo">
+        <img src="assets/team/nathalie-elong-ntsama.png" alt="Portrait of Elong Ntsama épouse Kana Nathalie, Independent Strategic Advisor to GI4C" loading="lazy" />
+      </div>
+
+      <div class="team-body">
+        <div class="team-role team-role-blue">
+          <span class="team-role-dot" aria-hidden="true"></span>
+          Independent Strategic Advisor &middot; Guardian of Mission &amp; Strategic Accountability
+        </div>
+        <h3 class="team-name">Elong Ntsama épouse Kana Nathalie</h3>
+        <div class="team-creds">
+          <span class="cred">Global Health</span>
+          <span class="cred">Health Systems</span>
+          <span class="cred">HIV Programmes &amp; Surveillance</span>
+        </div>
+
+        <div class="team-bio">
+          <p>Elong Ntsama épouse Kana Nathalie is a Global Health and Public Health Systems specialist with more than ten years of experience leading HIV/AIDS programmes, strengthening health systems, advancing health information systems, and supporting evidence-based decision-making across Cameroon. She combines deep technical expertise with strategic leadership, programme management, and institutional advisory experience gained through senior roles in government health institutions and internationally funded programmes.</p>
+
+          <p>She currently serves as Head of the HIV Care and Treatment Centre and Head of the Health Information and Statistics Unit at Laquintinie Hospital in Douala, where she leads multidisciplinary clinical and information management teams while overseeing the strategic use of health data to improve patient outcomes and health system performance.</p>
+
+          <div class="team-highlights">
+            <div class="highlight highlight-blue">
+              <div class="highlight-n">Laquintinie, Douala</div>
+              <div class="highlight-l">Heads both the HIV Care and Treatment Centre and the Health Information and Statistics Unit</div>
+            </div>
+            <div class="highlight highlight-blue">
+              <div class="highlight-n">TRACE</div>
+              <div class="highlight-l">National coordination of the HIV Recency Surveillance Programme for ICAP in Cameroon</div>
+            </div>
+            <div class="highlight highlight-blue">
+              <div class="highlight-n">10+ years</div>
+              <div class="highlight-l">Leading HIV prevention, care and treatment, surveillance, and health information systems</div>
+            </div>
+          </div>
+
+          <details class="team-more">
+            <summary>
+              <span class="more-label-closed">Read the full profile</span>
+              <span class="more-label-open">Show less</span>
+              <svg class="more-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="team-more-body">
+              <p>Previously, she served as National Project Coordinator for ICAP in Cameroon, providing strategic leadership for the national HIV Recency Surveillance (TRACE) Programme and coordinating implementation with the Ministry of Public Health, the National AIDS Control Committee, regional health authorities, and PEPFAR partners. She has also held senior technical advisory roles supporting HIV programme implementation, quality improvement, surveillance systems, and differentiated service delivery across multiple regions of Cameroon.</p>
+
+              <p>Her expertise spans health systems strengthening, HIV prevention, care and treatment, health information systems, surveillance, programme management, operational research, monitoring and evaluation, capacity strengthening, and the translation of evidence into policy and programme improvements.</p>
+
+              <p>As Independent Strategic Advisor to <strong class="gi4c">GI4C</strong>, Nathalie serves as the organisation's independent strategic conscience. Operating outside day-to-day management, she provides objective oversight that strengthens governance, challenges assumptions, and ensures strategic decisions remain firmly aligned with <strong class="gi4c">GI4C</strong>'s mission and values.</p>
+
+              <p>Her role is to continuously ask the questions that matter most:</p>
+              <ul class="team-questions">
+                <li>Are we listening to communities?</li>
+                <li>Are invisible populations becoming visible through evidence?</li>
+                <li>Are we responding to real needs?</li>
+                <li>Are we strengthening systems rather than simply delivering projects?</li>
+                <li>Are we creating sustainable impact?</li>
+              </ul>
+              <p>By rigorously reviewing strategies, programmes, and institutional direction, she helps safeguard <strong class="gi4c">GI4C</strong>'s integrity, sharpen its thinking, and maintain an unwavering focus on community intelligence, accountability, and long-term systems transformation.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </article>
+
+    <article class="team-lead reveal-scale">
+      <div class="team-photo">
+        <img src="assets/team/serge-tsokouang.png" alt="Portrait of Tsokouang Ngnonzéeye Serge Benoit, Finance &amp; Compliance Director of GI4C" loading="lazy" />
+      </div>
+
+      <div class="team-body">
+        <div class="team-role">
+          <span class="team-role-dot" aria-hidden="true"></span>
+          Finance &amp; Compliance Director
+        </div>
+        <h3 class="team-name">Tsokouang Ngnonzéeye Serge Benoit</h3>
+        <div class="team-creds">
+          <span class="cred">MSc Fraud Auditing &amp; Forensic Accounting</span>
+          <span class="cred">Finance &amp; Audit</span>
+          <span class="cred">Donor Compliance</span>
+        </div>
+
+        <div class="team-bio">
+          <p>Tsokouang Ngnonzéeye Serge Benoit is a finance, audit, and compliance specialist with over thirteen years of experience strengthening financial governance, institutional accountability, risk management, and donor compliance across international development, global health, faith-based, and nonprofit organizations. His expertise spans financial management, internal and external audit, fraud risk management, budgeting, financial reporting, procurement oversight, and organizational systems strengthening.</p>
+
+          <p>Throughout his career, he has held senior finance and audit leadership positions with ICAP at Columbia University (New York), the Presbyterian Church in Cameroon (PCC), and Presbyterian Eye Services, where he led financial operations, strengthened internal controls, and supported executive leadership and Boards in sound financial governance and strategic decision-making.</p>
+
+          <div class="team-highlights">
+            <div class="highlight">
+              <div class="highlight-n">13+ years</div>
+              <div class="highlight-l">Strengthening financial governance, risk management, and donor compliance across development, health, and faith-based organizations</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-n">SAGE &rarr; SAP</div>
+              <div class="highlight-l">Coordinated the ERP transition and harmonized accounting systems with OHADA standards</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-n">9 major donors</div>
+              <div class="highlight-l">Compliance oversight for USAID, ICAP, UNDP, UNFPA, Mission 21, CBM, HKI, Intersos &amp; PCUSA-funded programmes</div>
+            </div>
+          </div>
+
+          <details class="team-more">
+            <summary>
+              <span class="more-label-closed">Read the full profile</span>
+              <span class="more-label-open">Show less</span>
+              <svg class="more-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="team-more-body">
+              <p>His achievements include overseeing financial management for major donor-funded programmes, strengthening financial systems, coordinating the transition from SAGE to SAP ERP, harmonizing accounting systems with OHADA standards, developing financial policies and procedures, supervising procurement compliance, supporting external audits, and improving institutional accountability through financial analysis and risk management.</p>
+
+              <p>He has worked extensively with international donors and partners, including USAID, ICAP, UNDP, UNFPA, Mission 21 Switzerland, Bread for the World, Christian Blind Mission (CBM Germany), Helen Keller International, Intersos, and PCUSA, ensuring compliance with donor regulations and fiduciary requirements.</p>
+
+              <p>As Finance &amp; Compliance Director of <strong class="gi4c">GI4C</strong>, Serge serves as the custodian of the organisation's financial integrity and fiduciary accountability. He provides strategic leadership for financial governance, enterprise risk management, internal controls, donor compliance, procurement oversight, and institutional accountability. Working closely with the Board of Directors and executive leadership, he ensures that <strong class="gi4c">GI4C</strong> maintains the highest standards of transparency, responsible stewardship of resources, regulatory compliance, and financial sustainability. His role is fundamental to building donor confidence, safeguarding organisational assets, and ensuring that every resource entrusted to <strong class="gi4c">GI4C</strong> delivers measurable value and impact for the communities it serves.</p>
+
+              <p>He holds a Bachelor of Science in Accounting, a Master of Science in Fraud Auditing and Forensic Accounting, and is completing the Certified Public Accountant (CPA) qualification through KASNEB, Kenya.</p>
             </div>
           </details>
         </div>
