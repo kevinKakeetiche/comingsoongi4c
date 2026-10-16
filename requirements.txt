@@ -1,0 +1,42 @@
+# Web Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.5
+python-dotenv==1.0.0
+
+# Database
+SQLAlchemy==2.0.23
+psycopg2-binary==2.9.9
+
+# AI/ML
+openai==1.3.0
+langchain==0.0.340
+transformers==4.35.0
+torch==2.1.0
+scikit-learn==1.3.2
+pandas==2.1.3
+numpy==1.26.2
+
+# GIS/Geospatial
+geopandas==0.14.1
+folium==0.15.0
+shapely==2.0.2
+geojson==3.1.0
+
+# Data Processing
+requests==2.31.0
+python-dateutil==2.8.2
+
+# Payment Integration
+requests==2.31.0
+
+# Task Scheduling
+APScheduler==3.10.4
+
+# Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Development
+gunicorn==21.2.0

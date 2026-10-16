@@ -1,0 +1,37 @@
+# ===== SECRETS (ne jamais pousser) =====
+.env
+*.env
+!.env.example
+
+# ===== SYSTÈME =====
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ===== IDE =====
+.vscode/
+.idea/
+
+# ===== PYTHON =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+ENV/
+*.egg-info/
+.pytest_cache/
+
+# ===== NODE =====
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ===== LOGS =====
+*.log
+
+# ===== TEMPORAIRE =====
+*.tmp
+~$*

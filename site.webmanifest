@@ -1,0 +1,22 @@
+{
+  "name": "Global Impact for Communities",
+  "short_name": "GI4C",
+  "description": "GI4C | Community Intelligence & Systems Strengthening Hub",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b2545",
+  "icons": [
+    {
+      "src": "favicon-32x32.png?v=20261013",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png?v=20261013",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

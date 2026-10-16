@@ -1,0 +1,296 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Community Intelligence Map | GI4C</title><link rel="icon" type="image/svg+xml" href="favicon.svg?v=20261013"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=20261013"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=20261013"><link rel="shortcut icon" href="favicon.ico?v=20261013"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20261013"><link rel="manifest" href="site.webmanifest?v=20261013"><meta name="theme-color" content="#0b2545"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /></head><body>
+<div class="search-modal" id="search-modal"><div class="search-modal-content"><button class="search-modal-close" id="search-modal-close">×</button><input type="text" class="search-input" id="search-input" placeholder="Search our site..."><div class="search-results" id="search-results"></div></div></div>
+<div class="topbar">Connecting Community Intelligence to Decisions, Resources & Action <a href="contact.html">Get in touch →</a></div><header class="site-nav" id="site-nav"><div class="nav-inner"><a class="brand" href="index.html"><img src="assets/gi4c-logo-real.jpeg" alt="GI4C logo"><div class="brand-text">GI4C</div></a><nav class="nav-links"><a href="index.html">Home</a><a href="mission.html">About</a><a href="programs.html">Our Work</a><a href="impact.html">Impact</a><a href="team.html">Team</a><a href="stories.html">Stories</a><a href="dashboard.html">Dashboard</a><a href="contact.html">Contact</a></nav><div class="nav-actions"><div class="search-container"><button class="search-toggle" id="search-toggle" aria-label="Search">🔍</button></div><a class="btn btn-green" href="donate.html">Donate</a><button class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button></div></div><div class="mobile-menu"><a href="index.html">Home</a><a href="mission.html">About</a><a href="programs.html">Our Work</a><a href="impact.html">Impact</a><a href="team.html">Team</a><a href="stories.html">Stories</a><a href="dashboard.html">Dashboard</a><a href="ai-assistant.html">AI Assistant</a><a href="contact.html">Contact</a><a class="btn btn-green" href="donate.html">Donate</a></div></header><div class="breadcrumbs"><a href="index.html">Home</a><span>›</span><span class="current">Dashboard</span></div><section class="page-hero"><div class="container"><span class="label" style="color:#7ec8f5">GI4C Intelligence</span><h1>Community Intelligence Map</h1><p>Interactive GI4C programme and GIS view showing where community intelligence, action, and systems strengthening are underway.</p></div></section><section class="section"><div class="container dashboard-shell"><div class="dash-head"><div><h2 style="font-family:var(--display);margin:0">GI4C Community Intelligence Dashboard</h2><span style="color:var(--gray);font-size:12px">Project and GIS data linked to GI4C programme records</span></div><a class="btn btn-outline" href="ai-assistant.html">Ask AI Assistant</a></div><div style="margin-top:20px" class="map"><div id="gi4c-map" style="height: 520px; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); border:1px solid var(--border);"></div></div></div></section><footer class="footer"><div class="footer-grid"><div><h4>GI4C</h4><p>Global Impact for Communities  Connecting Community Intelligence to Decisions, Resources & Action.</p></div><div><h4>Explore</h4><p><a href="mission.html">Mission</a><br><a href="programs.html">Programs</a><br><a href="impact.html">Impact</a><br><a href="policies.html">Policies &amp; Accountability</a><br><a href="stories.html">Stories</a></p></div><div><h4>Tools</h4><p><a href="dashboard.html">Dashboard</a><br><a href="ai-assistant.html">AI Assistant</a><br><a href="donate.html">Donate</a></p></div><div><h4>Connect</h4><p>Yaoundé, Cameroon<br>info@gi4c.org<br>www.gi4c.org</p></div></div><div class="footer-bottom">© 2026 Global Impact for Communities (GI4C). </div></footer><script src="nav.js"></script><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
+document.addEventListener('DOMContentLoaded', function() {
+    var map = L.map('gi4c-map', { zoomControl: true, scrollWheelZoom: true }).setView([6.0, 12.5], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var previewContainer = document.createElement('div');
+    previewContainer.id = 'gi4c-map-preview';
+    previewContainer.className = 'gi4c-map-preview';
+    document.getElementById('gi4c-map').parentNode.appendChild(previewContainer);
+
+    function isTouchDevice() {
+        return window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+    }
+
+    function formatPreview(record) {
+        previewContainer.replaceChildren();
+        var title = document.createElement('div');
+        title.className = 'gi4c-map-preview-title';
+        title.textContent = record.name;
+        var location = document.createElement('div');
+        location.className = 'gi4c-map-preview-location';
+        location.textContent = record.location;
+        var description = document.createElement('div');
+        description.className = 'gi4c-map-preview-description';
+        description.textContent = record.short_solution;
+        previewContainer.append(title, location, description);
+
+        if (isTouchDevice()) {
+            var programmeLink = document.createElement('a');
+            programmeLink.className = 'gi4c-map-preview-button';
+            programmeLink.href = record.url;
+            programmeLink.textContent = 'View Programme';
+            previewContainer.appendChild(programmeLink);
+        }
+    }
+
+    function setPreviewPosition(marker, record) {
+        var point = map.latLngToContainerPoint(marker.getLatLng());
+        var mapElement = document.getElementById('gi4c-map');
+        var left = point.x + 20;
+        var top = point.y - 30;
+        var previewWidth = 280;
+        var maxLeft = mapElement.clientWidth - previewWidth - 12;
+        left = Math.min(Math.max(12, left), Math.max(12, maxLeft));
+        top = Math.max(12, top);
+        previewContainer.style.left = left + 'px';
+        previewContainer.style.top = top + 'px';
+        formatPreview(record);
+        previewContainer.style.display = 'block';
+    }
+
+    function hidePreview() {
+        previewContainer.style.display = 'none';
+    }
+
+    var projectRecords = [];
+    var activeTouchMarker = null;
+    var mapStatus = document.createElement('div');
+    mapStatus.className = 'gi4c-map-status';
+    mapStatus.setAttribute('role', 'status');
+    mapStatus.textContent = 'Loading verified GI4C project locations…';
+    document.getElementById('gi4c-map').parentNode.appendChild(mapStatus);
+
+    function setMapStatus(message) {
+        mapStatus.textContent = message;
+        mapStatus.style.display = message ? 'block' : 'none';
+    }
+
+    function renderProjectRecords(records) {
+        if (!Array.isArray(records) || !records.length) {
+            setMapStatus('Data not yet available');
+            return;
+        }
+
+        map.eachLayer(function(layer) {
+            if (layer instanceof L.Marker) {
+                map.removeLayer(layer);
+            }
+        });
+
+        projectRecords = records;
+        records.forEach(function(record, index) {
+            addProjectMarker(record, index);
+        });
+
+        var bounds = L.latLngBounds(records.map(function(item) {
+            return [item.lat, item.lng];
+        }));
+        map.fitBounds(bounds.pad(0.4));
+        setMapStatus('');
+    }
+
+    function addProjectMarker(record, index) {
+        var gi4cIcon = L.divIcon({
+            className: 'gi4c-map-marker',
+            html: '<span class="gi4c-pin"></span>',
+            iconSize: [18, 18],
+            iconAnchor: [9, 9]
+        });
+
+        var offset = 0;
+        var sameArea = projectRecords.filter(function(item) {
+            return item.id !== record.id && Math.abs(item.lat - record.lat) < 0.08 && Math.abs(item.lng - record.lng) < 0.08;
+        });
+        if (sameArea.length > 0) {
+            offset = (index % 3) * 0.02;
+        }
+
+        var marker = L.marker([record.lat + offset, record.lng + offset * 0.7], { icon: gi4cIcon });
+        marker.record = record;
+
+        marker.on('mouseover', function() {
+            if (!isTouchDevice()) {
+                setPreviewPosition(marker, record);
+            }
+        });
+
+        marker.on('mouseout', function() {
+            if (!isTouchDevice()) {
+                hidePreview();
+            }
+        });
+
+        marker.on('click', function() {
+            if (isTouchDevice()) {
+                if (activeTouchMarker && activeTouchMarker === marker) {
+                    window.location.href = record.url;
+                    return;
+                }
+                activeTouchMarker = marker;
+                setPreviewPosition(marker, record);
+                return;
+            }
+
+            window.location.href = record.url;
+        });
+
+        marker.addTo(map);
+        return marker;
+    }
+
+    fetch('/api/gis/locations', { cache: 'no-store' })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('GIS API unavailable');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (!data || !Array.isArray(data.features) || !data.features.length) {
+                throw new Error('No GIS locations available');
+            }
+
+            var apiRecords = data.features.map(function(feature) {
+                var props = feature.properties || {};
+                var coordinates = feature.geometry && feature.geometry.coordinates;
+                return {
+                    id: props.program_id,
+                    name: props.name,
+                    location: props.location,
+                    lat: coordinates && coordinates[1],
+                    lng: coordinates && coordinates[0],
+                    short_solution: props.short_solution || props.map_summary,
+                    url: props.programme_url || props.url,
+                    reportUrl: props.report_url,
+                    status: props.status,
+                    category: props.category
+                };
+            }).filter(function(item) {
+                return item.id !== undefined && item.id !== null &&
+                    typeof item.name === 'string' && item.name.trim() &&
+                    typeof item.location === 'string' && item.location.trim() &&
+                    typeof item.short_solution === 'string' && item.short_solution.trim() &&
+                    typeof item.url === 'string' && item.url.trim() &&
+                    Number.isFinite(item.lat) && Number.isFinite(item.lng);
+            });
+
+            if (!apiRecords.length) {
+                setMapStatus('Data not yet available');
+                return;
+            }
+
+            renderProjectRecords(apiRecords);
+        })
+        .catch(function(error) {
+            console.error('Unable to load verified GI4C map locations:', error);
+            setMapStatus('Verified project location data could not be loaded.');
+        });
+
+    map.on('click', function() {
+        if (isTouchDevice()) {
+            hidePreview();
+            activeTouchMarker = null;
+        }
+    });
+});
+</script><style>
+.gi4c-map-preview {
+    position: absolute;
+    width: 280px;
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(10,37,69,.12);
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(10,37,69,.14);
+    z-index: 999;
+    display: none;
+    padding: 12px 14px;
+    pointer-events: auto;
+}
+.gi4c-map-preview-title {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+.gi4c-map-preview-location {
+    color: var(--gray);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+.gi4c-map-preview-description {
+    color: var(--navy);
+    font-size: 13px;
+    line-height: 1.5;
+    font-style: italic;
+}
+.gi4c-map-preview-button {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.gi4c-map-status {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    max-width: calc(100% - 32px);
+    padding: 9px 14px;
+    border: 1px solid rgba(10,37,69,.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 4px 14px rgba(10,37,69,.12);
+    color: var(--navy);
+    font-size: 13px;
+    text-align: center;
+}
+.gi4c-pin {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--green);
+    border: 2px solid #fff;
+    box-shadow: 0 4px 12px rgba(26,122,85,.28);
+    transform: rotate(-45deg);
+    position: relative;
+    transition: all .2s ease;
+}
+.gi4c-pin::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    margin-top: -3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.9);
+}
+.gi4c-map-marker {
+    background: transparent;
+    border: none;
+}
+.gi4c-map-marker:hover .gi4c-pin,
+.gi4c-map-marker:focus .gi4c-pin {
+    transform: rotate(-45deg) scale(1.15);
+    box-shadow: 0 6px 16px rgba(26,122,85,.35);
+}
+@media (max-width: 768px) {
+    .gi4c-map-preview {
+        width: 220px;
+    }
+}
+</style><script src="animations.js"></script></body></html>
