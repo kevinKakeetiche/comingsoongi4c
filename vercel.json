@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/programs-new.html",
+      "destination": "/programs.html",
+      "permanent": true
+    },
+    {
+      "source": "/stories.html",
+      "destination": "/programs.html",
+      "permanent": true
+    }
+  ],
   "functions": {
     "api/*.js": {
       "runtime": "nodejs22.x"

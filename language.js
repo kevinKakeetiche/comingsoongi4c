@@ -6,7 +6,8 @@
   const bundleFiles = [
     'translations-core.js',
     'translations-programs.js',
-    'translations-services.js'
+    'translations-services.js',
+    'translations-case-studies.js'
   ];
 
   function loadBundle(file) {

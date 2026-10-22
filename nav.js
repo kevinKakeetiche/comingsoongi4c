@@ -7,6 +7,11 @@
     document.head.appendChild(languageScript);
   }
 
+  document.querySelectorAll('a[href]').forEach(link => {
+    const target = link.getAttribute('href');
+    if (target && /^(?:\.\.\/)?stories\.html(?:#.*)?$/i.test(target)) link.remove();
+  });
+
   const translate = message => window.GI4CLanguage ? window.GI4CLanguage.translate(message) : message;
 
   // Mobile menu toggle

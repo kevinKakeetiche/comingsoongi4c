@@ -114,7 +114,7 @@ const searchableContent = [
   { title: 'Our Work', titleFr: 'Nos actions', url: 'programs.html', description: 'Explore our programs and initiatives', descriptionFr: 'Découvrez nos programmes et initiatives' },
   { title: 'Impact', titleFr: 'Impact', url: 'impact.html', description: 'See our impact and results', descriptionFr: 'Découvrez notre impact et nos résultats' },
   { title: 'Team', titleFr: 'Équipe', url: 'team.html', description: 'Meet our leadership team', descriptionFr: 'Découvrez notre équipe dirigeante' },
-  { title: 'Stories', titleFr: 'GI4C Insights', url: 'stories.html', description: 'Read GI4C insights and learning', descriptionFr: 'Consultez les analyses et les enseignements de GI4C' },
+  { title: 'Project profiles', titleFr: 'Profils de projets', url: 'programs.html', description: 'Read detailed project profiles', descriptionFr: 'Consultez les profils détaillés des projets' },
   { title: 'Dashboard', titleFr: 'Tableau de bord', url: 'dashboard.html', description: 'View our data dashboard', descriptionFr: 'Consultez notre tableau de bord' },
   { title: 'AI Assistant', titleFr: 'Assistant IA', url: 'ai-assistant.html', description: 'Chat with our AI assistant', descriptionFr: 'Échangez avec notre assistant IA' },
   { title: 'Contact', titleFr: 'Contact', url: 'contact.html', description: 'Get in touch with us', descriptionFr: 'Contactez-nous' },
